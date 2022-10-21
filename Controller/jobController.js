@@ -21,7 +21,7 @@ module.exports.executeJob = async (req, res) => {
             
             let current_time = Date.parse(new Date().toUTCString())
             let land_time = Date.parse(new Date(landData.updatedAt).toUTCString())
-            if ((current_time - land_time) > 60000) {
+            if ((current_time - land_time) > 300000) {
                 console.log((current_time - land_time), landData)
                 const landUpdate = await Map.findOneAndUpdate({x: tileCopy[land].x, y: tileCopy[land].y}, {status: ""}).then((newData)=>{
                     if (newData.status === "") {
